@@ -88,67 +88,7 @@ async function processFiles(coutryCode: string, subsNameMap = {}) {
     }
 }
 
-// @AI_GENERATED: Kiro v1.0
-/**
- * Google Polyline 编码算法
- * 将 [lng, lat] 坐标数组编码为压缩字符串
- */
-export function encodePolyline(coordinates: number[][]): string {
-    let output = '';
-    let prevLat = 0;
-    let prevLng = 0;
-    for (const [lng, lat] of coordinates) {
-        const latE5 = Math.round(lat * 1e5);
-        const lngE5 = Math.round(lng * 1e5);
-        output += encodeSignedValue(latE5 - prevLat);
-        output += encodeSignedValue(lngE5 - prevLng);
-        prevLat = latE5;
-        prevLng = lngE5;
-    }
-    return output;
-}
-
-function encodeSignedValue(value: number): string {
-    let v = value < 0 ? ~(value << 1) : (value << 1);
-    let encoded = '';
-    while (v >= 0x20) {
-        encoded += String.fromCharCode((0x20 | (v & 0x1f)) + 63);
-        v >>= 5;
-    }
-    encoded += String.fromCharCode(v + 63);
-    return encoded;
-}
-
-/**
- * 对 GeoJSON feature 的 geometry 进行 polyline 编码压缩
- * MultiPolygon/Polygon 的坐标环编码为字符串数组
- */
-function encodeFeatureGeometry(feature: any): any {
-    const geom = feature.geometry;
-    if (!geom || !geom.coordinates) return feature;
-    if (geom.type === 'Polygon') {
-        return {
-            ...feature,
-            geometry: {
-                type: geom.type,
-                rings: geom.coordinates.map((ring: number[][]) => encodePolyline(ring)),
-            },
-        };
-    }
-    if (geom.type === 'MultiPolygon') {
-        return {
-            ...feature,
-            geometry: {
-                type: geom.type,
-                rings: geom.coordinates.map((polygon: number[][][]) =>
-                    polygon.map((ring: number[][]) => encodePolyline(ring))
-                ).flat(),
-            },
-        };
-    }
-    return feature;
-}
-// @AI_GENERATED: end
+import { encodePolyline, encodeFeatureGeometry } from './polyline';
 
 // @AI_GENERATED: Kiro v1.0
 export interface DirEntry {
