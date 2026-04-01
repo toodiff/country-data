@@ -53,5 +53,21 @@ First, you should install `yarn` library.
     ```node 
     yarn run geo {COUNTRY_CODE}
     ```
+- crawl subs geo json data from web
+
+    Execute the following command and genetate country subs data file. Data file is in directory `geo/{COUNTRY_CODE}`
+    get subs from 'file/countries_areas_provinces.ts'
+
+    ```node 
+    yarn run geo subs
+    ```
+- compress geo json data
+
+    use Google Polyline encode
+
+    ```node 
+    yarn run geo encode
+    yarn run geo encode={JSON_DIRECTORY}
+    ```
 
 You should modify files in `src` for getting more data.
