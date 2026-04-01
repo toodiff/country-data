@@ -47,8 +47,8 @@ First, you should install `yarn` library.
     
 - crawl geo json data from web
 
-    Execute the following command and genetate data file. Data file is `geo`
-    {COUNTRY_CODE} is iso_code in `file/countries_areas_provinces.ts`
+    Execute the following command and genetate data file. Data file is in directory `geo`
+    {COUNTRY_CODE} is iso_code in `file/countries_areas_provinces.ts` or dir={country file directory, country file is {COUNTRY_CODE}.ext}
 
     ```node 
     yarn run geo {COUNTRY_CODE}
