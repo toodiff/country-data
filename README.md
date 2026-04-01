@@ -44,5 +44,14 @@ First, you should install `yarn` library.
     ```node 
     yarn un
     ```
+    
+- crawl geo json data from web
+
+    Execute the following command and genetate data file. Data file is `geo`
+    {COUNTRY_CODE} is iso_code in `file/countries_areas_provinces.ts`
+
+    ```node 
+    yarn run geo {COUNTRY_CODE}
+    ```
 
 You should modify files in `src` for getting more data.
