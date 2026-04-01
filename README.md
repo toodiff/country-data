@@ -63,7 +63,7 @@ First, you should install `yarn` library.
     ```
 - compress geo json data
 
-    use Google Polyline encode, you can decompress it by calling decodeFeatureGeometry function in polyline.ts
+    encode json data by using Google Polyline, you can decompress it by calling decodeFeatureGeometry function in polyline.ts
 
     ```node 
     yarn run geo encode
